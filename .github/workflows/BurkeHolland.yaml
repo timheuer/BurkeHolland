@@ -46,6 +46,9 @@ jobs:
     - name: Pack
       run: dotnet pack -c Release -o packed
 
+    - name: Push to NuGet
+      run: dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+
     - name: Publish artifact
       uses: actions/upload-artifact@master
       with:
