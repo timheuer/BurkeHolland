@@ -45,3 +45,9 @@ jobs:
 
     - name: Pack
       run: dotnet pack -c Release -o packed
+
+    - name: Publish artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: nupkg
+        path: packed
