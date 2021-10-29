@@ -18,9 +18,6 @@ on:
       
 jobs:
   build:
-    outputs:
-      version: ${{ steps.set_proj_version.outputs.PKG_VERSION }}
-      relnotes: ${{ steps.set_proj_version.outputs.RELNOTES }}
     name: Build and Pack
     runs-on: ubuntu-latest
     env:
@@ -76,15 +73,15 @@ jobs:
         [xml]$nuspec = Get-Content BurkeHolland\BurkeHolland.csproj
         $version=$nuspec.project.propertygroup.version
         $relnotes=$nuspec.project.propertygroup.packagereleasenotes
-        Write-Output "::set-output name=PKG_VERSION::$version"
-        Write-Output "::set-output name=RELNOTES::$relnotes"
+        Write-Output "::set-env name=PKG_VERSION::$version"
+        Write-Output "::set-env name=RELNOTES::$relnotes"
 
     - name: Tag and Release
       id: tag_release
       uses: softprops/action-gh-release@v0.1.13
       with:
-        body: ${{ needs.build.outputs.relnotes }}
-        tag_name: ${{ needs.build.outputs.version }}
+        body: ${{ env.RELNOTES }}
+        tag_name: ${{ env.PKG_VERSION }}
         files: |
           **/*.nupkg
 
