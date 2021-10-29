@@ -13,7 +13,17 @@
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<DebugType>embedded</DebugType>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<Version>1.0.1</Version>
+		<PackageReleaseNotes>Initial released version</PackageReleaseNotes>
+		<PackageIcon>burkeholland.jpg</PackageIcon>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\burkeholland.jpg">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 
 	<ItemGroup>
