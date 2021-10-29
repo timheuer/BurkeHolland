@@ -38,8 +38,8 @@ jobs:
         [xml]$nuspec = Get-Content BurkeHolland\BurkeHolland.csproj
         $version=$nuspec.project.propertygroup.version
         $relnotes=$nuspec.project.propertygroup.packagereleasenotes
-        echo "PKG_VERSION=$version" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-        echo "RELNOTES=$relnotes" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        echo "PKG_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        echo "RELNOTES=$relnotes" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1.8.1
